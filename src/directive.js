@@ -25,7 +25,9 @@ var bind = function(element, binding) {
   });
 
   // Forward Sortable instance
-  __emitEvent(element, "ready", element.$vs.sortable);
+  __emitEvent(element, "ready", {
+    sortable: element.$vs.sortable
+  });
 };
 
 /**
@@ -56,11 +58,15 @@ var unbind = function(element) {
  * @private
  * @param  {object} element
  * @param  {string} type
- * @param  {object} options
+ * @param  {object} data
  * @return {undefined}
  */
-var __emitEvent = function(element, type, options) {
-  const event = new CustomEvent(type, options);
+var __emitEvent = function(element, type, data) {
+  const event = new CustomEvent(type);
+
+  for (let key in data) {
+    event[key] = data[key];
+  }
 
   element.dispatchEvent(event);
 };
