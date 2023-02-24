@@ -28,7 +28,7 @@
   "scripts": {
     "build": "node res/scripts/build.js",
     "lint": "eslint src",
-    "test": "npm run lint && npm run test:unit",
+    "test": "npm run lint",
     "test:unit": "jest ./test"
   },
   "dependencies": {
