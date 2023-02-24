@@ -41,7 +41,7 @@
     "@rollup/plugin-replace": "5.0.02",
     "@rollup/plugin-terser": "0.2.1",
     "@vue/eslint-config-prettier": "6.0.0",
-    "@vue/test-utils": "^2.3.0",
+    "@vue/test-utils": "2.3.0",
     "eslint": "7.27.0",
     "eslint-plugin-prettier": "3.4.0",
     "eslint-plugin-vue": "7.10.0",
