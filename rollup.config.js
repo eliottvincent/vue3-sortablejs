@@ -67,7 +67,7 @@ function createEntry(config) {
   };
 
   if (isGlobalBuild) {
-    c.output.name = "Sortablejs";
+    c.output.name = "Sortable";
   }
 
   if (config.minify) {
