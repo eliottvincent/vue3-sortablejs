@@ -14,19 +14,19 @@ var bind = function(element, binding) {
     return;
   }
 
-  // Initialize private state ($vue3-sortablejs)
-  element.$vs = {};
-  element.$vs.sortable = null;
-  element.$vs.options = (binding.value || {}).options || null;
+  // Initialize private state ($sortablejs)
+  element.$s = {};
+  element.$s.sortable = null;
+  element.$s.options = (binding.value || {}).options || null;
 
   // Initialize Sortable
-  element.$vs.sortable = new Sortable(element, {
-    ...element.$vs.options
+  element.$s.sortable = new Sortable(element, {
+    ...element.$s.options
   });
 
   // Forward Sortable instance
   __emitEvent(element, "ready", {
-    sortable: element.$vs.sortable
+    sortable: element.$s.sortable
   });
 };
 
@@ -79,13 +79,13 @@ var __emitEvent = function(element, type, data) {
  */
 var __reset = function(element) {
   // Reset Sortable
-  if ((element.$vs || {}).sortable) {
-    element.$vs.sortable.destroy();
-    element.$vs.sortable = null;
+  if ((element.$s || {}).sortable) {
+    element.$s.sortable.destroy();
+    element.$s.sortable = null;
   }
 
   // Reset private state
-  element.$vs = {};
+  element.$s = {};
 };
 
 export { bind, update, unbind };
