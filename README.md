@@ -15,6 +15,7 @@ The goal was to have a wrapper that:
 * supports Vue 3
 * is **light** and easy to maintain
 * works as a **directive**, for example to conditionally enable / disable the drag-and-drop feature without having to change the whole component
+* doesn't iterates on the data by itself
 * doesn't update the underlying data model (more on that later)
 
 As a reference, here are the wrappers that I tested:
@@ -78,3 +79,78 @@ And then use it like this in `MyComponent.vue`:
   </div>
 </template>
 ```
+
+
+## Options
+
+You can pass an object of options, in order to affect the behavior of the directive:
+* `disabled` whether to disable the drag-and-drop behavior
+* `options` an object containing any [Sortable option](https://github.com/SortableJS/Sortable#options)
+
+```html
+<template>
+  <h1>My Component</h1>
+
+  <div v-sortable="{ disabled: false, options: { animation: 250, easing: 'cubic-bezier(1, 0, 0, 1)' }}">
+    <div>a</div>
+    <div>b</div>
+    <div>c</div>
+  </div>
+</template>
+```
+
+
+## Events
+
+A custom `ready` event will be triggered as soon as Sortable is registered on the component. You can use it to access the Sortable instance.
+As well, you can listen to any native Sortable event.
+
+* `@ready`: Sortable is ready and attached to the component
+* `@choose`: element is chosen
+* `@unchoose`: element is unchosen
+* `@start`: element dragging started
+* `@end`: element dragging ended
+* `@add`: element is dropped into the list from another list
+* `@update`: changed sorting within list
+* `@sort`: called by any change to the list (add / update / remove)
+* `@remove`: element is removed from the list into another list
+* `@filter`: attempt to drag a filtered element
+* `@move`: event when you move an item in the list or between lists
+* `@clone`: called when creating a clone of element
+* `@change`: called when dragging element changes position
+
+```html
+<template>
+  <h1>My Component</h1>
+
+  <div
+    v-sortable
+    @ready="onReady"
+    @end="onOrderChange"
+  >
+    <div data-id="1">a</div>
+    <div data-id="2">b</div>
+    <div data-id="3">c</div>
+  </div>
+</template>
+
+<script>
+export default {
+  methods: {
+    onReady(event) {
+      console.log(event.sortable);
+    },
+
+    onOrderChange(event) {
+      console.log(event.oldIndex);
+      console.log(event.newIndex);
+    }
+  }
+};
+</script>
+```
+
+
+## License
+
+vue3-sortablejs is released under the MIT License. See the bundled LICENSE file for details.
