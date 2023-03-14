@@ -89,9 +89,7 @@ You can pass an object of options, in order to affect the behavior of the direct
 
 ```html
 <template>
-  <h1>My Component</h1>
-
-  <div v-sortable="{ disabled: false, options: { animation: 250, easing: 'cubic-bezier(1, 0, 0, 1)' }}">
+  <div v-sortable="{ disabled: false, options: { animation: 250, easing: 'cubic-bezier(1, 0, 0, 1)' } }">
     <div>a</div>
     <div>b</div>
     <div>c</div>
@@ -121,16 +119,10 @@ As well, you can listen to any native Sortable event.
 
 ```html
 <template>
-  <h1>My Component</h1>
-
-  <div
-    v-sortable
-    @ready="onReady"
-    @end="onOrderChange"
-  >
-    <div data-id="1">a</div>
-    <div data-id="2">b</div>
-    <div data-id="3">c</div>
+  <div v-sortable @ready="onReady" @end="onOrderChange">
+    <div>a</div>
+    <div>b</div>
+    <div>c</div>
   </div>
 </template>
 
@@ -144,6 +136,93 @@ export default {
     onOrderChange(event) {
       console.log(event.oldIndex);
       console.log(event.newIndex);
+    }
+  }
+};
+</script>
+```
+
+
+## Order mutation
+
+This wrapper only impacts the actual DOM order, **it does not mutate the data order**.
+This avoids a lot of overhead in the code, and give you the full control on your data.
+
+It is really simple to change the order in your data after an item is dropped:
+```html
+<template>
+  <div v-sortable @end="onOrderChange">
+    <div v-for="item in items">
+      {{ item }}
+    </div>
+  </div>
+
+  <span>Items data: {{ items }}</span>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      items: [ "a", "b", "c" ]
+    }
+  },
+
+  methods: {
+    onOrderChange(event) {
+      // Remove item from old index
+      let item = this.items.splice(event.oldIndex, 1)[0];
+
+      // Insert at new index
+      this.items.splice(event.newIndex, 0, item);
+    }
+  }
+};
+</script>
+```
+
+
+## Notes
+
+It is highly recommended to set a **key on the children items**, to help Sortable track the DOM:
+
+```html
+<template>
+  <div v-sortable>
+    <div key="a">a</div>
+    <div key="b">b</div>
+    <div key="c">c</div>
+  </div>
+</template>
+```
+
+In the same way, if you use the `group` option, it is highly recommended to set a **key on the parent** itself. Otherwise the DOM managed by Sortable can become out-of-sync with the actual data state. I have noticed this helps a lot when using Sortable with complex components.
+The key must be based on the number of items the parent contains. This will force a re-render when an item is added / removed, and make Sortable re-initialize and start from a clean state every time. This may seem a bit hacky, but it's the only way to keep a consistant behavior.
+
+```html
+<template>
+  <h1>Foo</h1>
+
+  <div v-sortable="{ options: { group: 'items' } }" @end="onOrderChange" :key="fooItems.length">
+    <div v-for="item in fooItems" :key="item">
+      {{ item }}
+    </div>
+  </div>
+
+  <h1>Bar</h1>
+
+  <div v-sortable="{ options: { group: 'items' } }" @end="onOrderChange" :key="barItems.length">
+    <div v-for="item in barItems" :key="item">
+      {{ item }}
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  methods: {
+    onOrderChange(event) {
+      // Mutate fooItems and barItems
     }
   }
 };
