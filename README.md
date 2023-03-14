@@ -7,7 +7,7 @@ Re-orderable drag-and-drop lists, via a **Vue directive**. Based on and offering
 [[view demo]](https://sortablejs.github.io/Sortable/)
 
 
-#### Yet another Sortable wrapper
+### Yet another Sortable wrapper
 
 Several Vue wrappers for Sortable exist out there, yet I decided to build another one.
 
@@ -18,10 +18,10 @@ The goal was to have a wrapper that:
 * doesn't update the underlying data model (more on that later)
 
 As a reference, here are the wrappers that I tested:
-* `[vuedraggable](https://www.npmjs.com/package/vuedraggable)` only supports Vue 2
-* `[vuedraggable@next](https://www.npmjs.com/package/vuedraggable)` supports Vue 3, but adds a lot of overhead on top of Sortable
-* `[vue-sortable](https://www.npmjs.com/package/vue-sortable)` is totally outdated (last update is from 2016)
-* `[sortablejs-vue3](https://www.npmjs.com/package/sortablejs-vue3)` is the best wrapper I found, but only works as a component
+* [`vuedraggable`](https://www.npmjs.com/package/vuedraggable) only supports Vue 2
+* [`vuedraggable@next`](https://www.npmjs.com/package/vuedraggable) supports Vue 3, but adds a lot of overhead on top of Sortable
+* [`vue-sortable`](https://www.npmjs.com/package/vue-sortable) is totally outdated (last update is from 2016)
+* [`sortablejs-vue3`](https://www.npmjs.com/package/sortablejs-vue3) is the best wrapper I found, but only works as a component
 
 
 ## Usage
@@ -52,7 +52,7 @@ Get Vue 3 Sortable from [jsDelivr](https://cdn.jsdelivr.net/npm/vue3-sortablejs/
 </script>
 ```
 
-Vue 3 Sortable is also available through npm as the `[vue3-sortablejs](https://www.npmjs.com/package/vue3-sortablejs)` package.
+Vue 3 Sortable is also available through npm as the [`vue3-sortablejs`](https://www.npmjs.com/package/vue3-sortablejs) package.
 
 Install the package:
 ```sh
