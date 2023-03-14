@@ -15,10 +15,10 @@ The goal was to have a wrapper that:
 * supports Vue 3
 * is **light** and easy to maintain
 * works as a **directive**, for example to conditionally enable / disable the drag-and-drop feature without having to change the whole component
-* doesn't iterates on the data by itself
-* doesn't update the underlying data model (more on that later)
+* doesn't iterate on the data by itself
+* doesn't update the underlying data model (see [Order mutation](#order-mutation))
 
-As a reference, here are the wrappers that I tested:
+As a reference, here are other Sortable wrappers:
 * [`vuedraggable`](https://www.npmjs.com/package/vuedraggable) only supports Vue 2
 * [`vuedraggable@next`](https://www.npmjs.com/package/vuedraggable) supports Vue 3, but adds a lot of overhead on top of Sortable
 * [`vue-sortable`](https://www.npmjs.com/package/vue-sortable) is totally outdated (last update is from 2016)
@@ -60,7 +60,7 @@ Install the package:
 npm install --save vue3-sortablejs
 ```
 
-Register the plugin in your `App.vue` file:
+Register the plugin in `App.vue`:
 ```js
 import VueSortable from "vue3-sortablejs";
 
@@ -100,7 +100,7 @@ You can pass an object of options, in order to affect the behavior of the direct
 
 ## Events
 
-A custom `ready` event will be triggered as soon as Sortable is registered on the component. You can use it to access the Sortable instance.
+A custom `ready` event will be triggered as soon as Sortable is registered on the component. You can use it to access the underlying Sortable instance.
 As well, you can listen to any native Sortable event.
 
 * `@ready`: Sortable is ready and attached to the component
@@ -197,6 +197,7 @@ It is highly recommended to set a **key on the children items**, to help Sortabl
 ```
 
 In the same way, if you use the `group` option, it is highly recommended to set a **key on the parent** itself. Otherwise the DOM managed by Sortable can become out-of-sync with the actual data state. I have noticed this helps a lot when using Sortable with complex components.
+
 The key must be based on the number of items the parent contains. This will force a re-render when an item is added / removed, and make Sortable re-initialize and start from a clean state every time. This may seem a bit hacky, but it's the only way to keep a consistant behavior.
 
 ```html

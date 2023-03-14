@@ -1,6 +1,6 @@
 {
   "name": "vue3-sortablejs",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A directive for Sortable on Vue 3",
   "author": "Eliott Vincent <dev@eliottvincent.com>",
   "homepage": "https://github.com/eliottvincent/vue3-sortablejs",
