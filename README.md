@@ -146,7 +146,7 @@ export default {
 ## Order mutation
 
 This wrapper only impacts the actual DOM order, **it does not mutate the data order**.
-This avoids a lot of overhead in the code, and give you the full control on your data.
+This avoids a lot of overhead in the code, and gives you the full control on your data.
 
 It is really simple to change the order in your data after an item is dropped:
 ```html
@@ -173,7 +173,7 @@ export default {
       // Remove item from old index
       let item = this.items.splice(event.oldIndex, 1)[0];
 
-      // Insert at new index
+      // Insert it at new index
       this.items.splice(event.newIndex, 0, item);
     }
   }
