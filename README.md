@@ -2,9 +2,9 @@
 
 [![Build Status](https://github.com/eliottvincent/vue3-sortablejs/actions/workflows/test.yml/badge.svg)](https://github.com/eliottvincent/vue3-sortablejs/actions) [![Version](https://img.shields.io/npm/v/vue3-sortablejs.svg)](https://www.npmjs.com/package/vue3-sortablejs) [![Downloads](https://img.shields.io/npm/dt/vue3-sortablejs.svg)](https://www.npmjs.com/package/vue3-sortablejs)
 
-Re-orderable drag-and-drop lists, via a **Vue directive**. Based on and offering all features of [Sortable](https://github.com/SortableJS/Sortable).
-
-[[view demo]](https://sortablejs.github.io/Sortable/)
+> Re-orderable drag-and-drop lists, via a **Vue directive**. Based on and offering all features of [Sortable](https://github.com/SortableJS/Sortable).
+> 
+> [[view demo]](https://sortablejs.github.io/Sortable/)
 
 
 ### Yet another Sortable wrapper
