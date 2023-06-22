@@ -38,7 +38,10 @@ var bind = function(element, binding) {
  * @return {undefined}
  */
 var update = function(element, binding) {
-  if (binding.value !== binding.oldValue) {
+  if (
+    JSON.stringify(binding.value || {}) !==
+    JSON.stringify(binding.oldValue || {})
+  ) {
     bind(element, binding);
   }
 };
