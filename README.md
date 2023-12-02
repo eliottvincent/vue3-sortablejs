@@ -4,7 +4,7 @@
 
 > Re-orderable drag-and-drop lists, via a **Vue directive**. Based on and offering all features of [Sortable](https://github.com/SortableJS/Sortable).
 > 
-> [[view demo]](https://sortablejs.github.io/Sortable/)
+> [[view demo]](https://sortablejs.github.io/Sortable/#simple-list)
 
 
 ### Yet another Sortable wrapper
