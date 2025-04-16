@@ -6,7 +6,7 @@ jobs:
   test:
     strategy:
       matrix:
-        os: [ubuntu-20.04]
+        os: [ubuntu-latest]
         node-version: [14.x, 16.x, 18.x]
       fail-fast: false
 
@@ -37,7 +37,7 @@ jobs:
           npm run test
 
   publish:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/v')
     needs: test
     steps:
